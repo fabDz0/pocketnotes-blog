@@ -51,7 +51,8 @@ Possible directions,
 
 ---
 
-Second part of the blog will use Diamond Model to analyse existing threat.
+In Second part of the blog will use Diamond Model to analyse existing threat.
+
 ---
 ## References
 1. [Youtube video](https://www.youtube.com/watch?v=0QHUS8SNTNc)
