@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Simple Http Server | pocketnotes</title>
+<meta name="keywords" content="httpserver, python, how-to">
+<meta name="description" content="Here is a python code to start SimpleHTTPServer with an upload option.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/simplehttpserver/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css" integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/favicon/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/favicon/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/simplehttpserver/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="pocketnotes (Alt + H)">pocketnotes</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/archives/" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Simple Http Server
+    </h1>
+    <div class="post-meta"><span title='2019-09-07 22:41:32 +0530 IST'>September 7, 2019</span>&nbsp;·&nbsp;5 min
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#code" aria-label="Code">Code</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>Here is a python code to start <em>SimpleHTTPServer</em> with an upload option.</p>
+<p>This code is available on <a href="https://github.com/bones7456/bones7456/blob/master/SimpleHTTPServerWithUpload.py">github</a>.</p>
+<p>This script will give an upload option to client.</p>
+<p>When script is started, files are served from directory where started. Clients get to see the files in the folder and they upload files to that folder.</p>
+<h3 id="code">Code<a hidden class="anchor" aria-hidden="true" href="#code">#</a></h3>
+<p>Here is the code, credits to <a href="https://github.com/bones7456/bones7456/">bones7456</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env python</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;Simple HTTP Server With Upload.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">This module builds on BaseHTTPServer by implementing the standard GET
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">and HEAD requests in a fairly straightforward manner.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__version__ <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0.1&#34;</span>
+</span></span><span style="display:flex;"><span>__all__ <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;SimpleHTTPRequestHandler&#34;</span>]
+</span></span><span style="display:flex;"><span>__author__ <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bones7456&#34;</span>
+</span></span><span style="display:flex;"><span>__home_page__ <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://luy.li/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> posixpath
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> BaseHTTPServer
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> urllib
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> cgi
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> shutil
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> mimetypes
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> re
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">from</span> cStringIO <span style="color:#f92672">import</span> StringIO
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ImportError</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">from</span> StringIO <span style="color:#f92672">import</span> StringIO
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SimpleHTTPRequestHandler</span>(BaseHTTPServer<span style="color:#f92672">.</span>BaseHTTPRequestHandler):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;Simple HTTP request handler with GET/HEAD/POST commands.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    This serves files from the current directory and any of its
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    subdirectories.  The MIME type for files is determined by
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    calling the .guess_type() method. And can reveive file uploaded
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    by client.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    The GET/HEAD/POST requests are identical except that the HEAD
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    request omits the actual contents of the file.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    server_version <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SimpleHTTPWithUpload/&#34;</span> <span style="color:#f92672">+</span> __version__
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">do_GET</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Serve a GET request.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        f <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>send_head()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> f:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>copyfile(f, self<span style="color:#f92672">.</span>wfile)
+</span></span><span style="display:flex;"><span>            f<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">do_HEAD</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Serve a HEAD request.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        f <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>send_head()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> f:
+</span></span><span style="display:flex;"><span>            f<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">do_POST</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Serve a POST request.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        r, info <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>deal_post_data()
+</span></span><span style="display:flex;"><span>        print r, info, <span style="color:#e6db74">&#34;by: &#34;</span>, self<span style="color:#f92672">.</span>client_address
+</span></span><span style="display:flex;"><span>        f <span style="color:#f92672">=</span> StringIO()
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#39;&lt;!DOCTYPE html PUBLIC &#34;-//W3C//DTD HTML 3.2 Final//EN&#34;&gt;&#39;</span>)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;html&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&lt;title&gt;Upload Result Page&lt;/title&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;body&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&lt;h2&gt;Upload Result Page&lt;/h2&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;hr&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> r:
+</span></span><span style="display:flex;"><span>            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;strong&gt;Success:&lt;/strong&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;strong&gt;Failed:&lt;/strong&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(info)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;br&gt;&lt;a href=</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">%s</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">&gt;back&lt;/a&gt;&#34;</span> <span style="color:#f92672">%</span> self<span style="color:#f92672">.</span>headers[<span style="color:#e6db74">&#39;referer&#39;</span>])
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;hr&gt;&lt;small&gt;Powered By: bones7456, check new version at &#34;</span>)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;a href=</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">http://luy.li/?s=SimpleHTTPServerWithUpload</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;here&lt;/a&gt;.&lt;/small&gt;&lt;/body&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&lt;/html&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        length <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>tell()
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>seek(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>send_response(<span style="color:#ae81ff">200</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>send_header(<span style="color:#e6db74">&#34;Content-type&#34;</span>, <span style="color:#e6db74">&#34;text/html&#34;</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>send_header(<span style="color:#e6db74">&#34;Content-Length&#34;</span>, str(length))
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>end_headers()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> f:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>copyfile(f, self<span style="color:#f92672">.</span>wfile)
+</span></span><span style="display:flex;"><span>            f<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">deal_post_data</span>(self):
+</span></span><span style="display:flex;"><span>        boundary <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>headers<span style="color:#f92672">.</span>plisttext<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;=&#34;</span>)[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>        remainbytes <span style="color:#f92672">=</span> int(self<span style="color:#f92672">.</span>headers[<span style="color:#e6db74">&#39;content-length&#39;</span>])
+</span></span><span style="display:flex;"><span>        line <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>rfile<span style="color:#f92672">.</span>readline()
+</span></span><span style="display:flex;"><span>        remainbytes <span style="color:#f92672">-=</span> len(line)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> boundary <span style="color:#f92672">in</span> line:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">False</span>, <span style="color:#e6db74">&#34;Content NOT begin with boundary&#34;</span>)
+</span></span><span style="display:flex;"><span>        line <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>rfile<span style="color:#f92672">.</span>readline()
+</span></span><span style="display:flex;"><span>        remainbytes <span style="color:#f92672">-=</span> len(line)
+</span></span><span style="display:flex;"><span>        fn <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;Content-Disposition.*name=&#34;file&#34;; filename=&#34;(.*)&#34;&#39;</span>, line)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> fn:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">False</span>, <span style="color:#e6db74">&#34;Can&#39;t find out file name...&#34;</span>)
+</span></span><span style="display:flex;"><span>        path <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>translate_path(self<span style="color:#f92672">.</span>path)
+</span></span><span style="display:flex;"><span>        fn <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(path, fn[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(fn):
+</span></span><span style="display:flex;"><span>            fn <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;_&#34;</span>
+</span></span><span style="display:flex;"><span>        line <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>rfile<span style="color:#f92672">.</span>readline()
+</span></span><span style="display:flex;"><span>        remainbytes <span style="color:#f92672">-=</span> len(line)
+</span></span><span style="display:flex;"><span>        line <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>rfile<span style="color:#f92672">.</span>readline()
+</span></span><span style="display:flex;"><span>        remainbytes <span style="color:#f92672">-=</span> len(line)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            out <span style="color:#f92672">=</span> open(fn, <span style="color:#e6db74">&#39;wb&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">IOError</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">False</span>, <span style="color:#e6db74">&#34;Can&#39;t create file to write, do you have permission to write?&#34;</span>)
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>        preline <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>rfile<span style="color:#f92672">.</span>readline()
+</span></span><span style="display:flex;"><span>        remainbytes <span style="color:#f92672">-=</span> len(preline)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> remainbytes <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            line <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>rfile<span style="color:#f92672">.</span>readline()
+</span></span><span style="display:flex;"><span>            remainbytes <span style="color:#f92672">-=</span> len(line)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> boundary <span style="color:#f92672">in</span> line:
+</span></span><span style="display:flex;"><span>                preline <span style="color:#f92672">=</span> preline[<span style="color:#ae81ff">0</span>:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> preline<span style="color:#f92672">.</span>endswith(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\r</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>                    preline <span style="color:#f92672">=</span> preline[<span style="color:#ae81ff">0</span>:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>                out<span style="color:#f92672">.</span>write(preline)
+</span></span><span style="display:flex;"><span>                out<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">True</span>, <span style="color:#e6db74">&#34;File &#39;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39; upload success!&#34;</span> <span style="color:#f92672">%</span> fn)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                out<span style="color:#f92672">.</span>write(preline)
+</span></span><span style="display:flex;"><span>                preline <span style="color:#f92672">=</span> line
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">False</span>, <span style="color:#e6db74">&#34;Unexpect Ends of data.&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">send_head</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Common code for GET and HEAD commands.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        This sends the response code and MIME headers.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Return value is either a file object (which has to be copied
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        to the outputfile by the caller unless the command was HEAD,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        and must be closed by the caller under all circumstances), or
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        None, in which case the caller has nothing further to do.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        path <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>translate_path(self<span style="color:#f92672">.</span>path)
+</span></span><span style="display:flex;"><span>        f <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>isdir(path):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>endswith(<span style="color:#e6db74">&#39;/&#39;</span>):
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># redirect browser - doing basically what apache does</span>
+</span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>send_response(<span style="color:#ae81ff">301</span>)
+</span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>send_header(<span style="color:#e6db74">&#34;Location&#34;</span>, self<span style="color:#f92672">.</span>path <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/&#34;</span>)
+</span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>end_headers()
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> index <span style="color:#f92672">in</span> <span style="color:#e6db74">&#34;index.html&#34;</span>, <span style="color:#e6db74">&#34;index.htm&#34;</span>:
+</span></span><span style="display:flex;"><span>                index <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(path, index)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>exists(index):
+</span></span><span style="display:flex;"><span>                    path <span style="color:#f92672">=</span> index
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>list_directory(path)
+</span></span><span style="display:flex;"><span>        ctype <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>guess_type(path)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Always read in binary mode. Opening files in text mode may cause</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># newline translations, making the actual size of the content</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># transmitted *less* than the content-length!</span>
+</span></span><span style="display:flex;"><span>            f <span style="color:#f92672">=</span> open(path, <span style="color:#e6db74">&#39;rb&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">IOError</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>send_error(<span style="color:#ae81ff">404</span>, <span style="color:#e6db74">&#34;File not found&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>send_response(<span style="color:#ae81ff">200</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>send_header(<span style="color:#e6db74">&#34;Content-type&#34;</span>, ctype)
+</span></span><span style="display:flex;"><span>        fs <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>fstat(f<span style="color:#f92672">.</span>fileno())
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>send_header(<span style="color:#e6db74">&#34;Content-Length&#34;</span>, str(fs[<span style="color:#ae81ff">6</span>]))
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>send_header(<span style="color:#e6db74">&#34;Last-Modified&#34;</span>, self<span style="color:#f92672">.</span>date_time_string(fs<span style="color:#f92672">.</span>st_mtime))
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>end_headers()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">list_directory</span>(self, path):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Helper to produce a directory listing (absent index.html).
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Return value is either a file object, or None (indicating an
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        error).  In either case, the headers are sent, making the
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        interface the same as for send_head().
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            list <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>listdir(path)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> os<span style="color:#f92672">.</span>error:
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>send_error(<span style="color:#ae81ff">404</span>, <span style="color:#e6db74">&#34;No permission to list directory&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#f92672">.</span>sort(key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> a: a<span style="color:#f92672">.</span>lower())
+</span></span><span style="display:flex;"><span>        f <span style="color:#f92672">=</span> StringIO()
+</span></span><span style="display:flex;"><span>        displaypath <span style="color:#f92672">=</span> cgi<span style="color:#f92672">.</span>escape(urllib<span style="color:#f92672">.</span>unquote(self<span style="color:#f92672">.</span>path))
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#39;&lt;!DOCTYPE html PUBLIC &#34;-//W3C//DTD HTML 3.2 Final//EN&#34;&gt;&#39;</span>)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;html&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&lt;title&gt;Directory listing for </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&lt;/title&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> displaypath)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;body&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&lt;h2&gt;Directory listing for </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&lt;/h2&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">%</span> displaypath)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;hr&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;form ENCTYPE=</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">multipart/form-data</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74"> method=</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">post</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;input name=</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">file</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74"> type=</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">file</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">/&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;input type=</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">submit</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74"> value=</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">upload</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">/&gt;&lt;/form&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;hr&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&lt;ul&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> name <span style="color:#f92672">in</span> list:
+</span></span><span style="display:flex;"><span>            fullname <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(path, name)
+</span></span><span style="display:flex;"><span>            displayname <span style="color:#f92672">=</span> linkname <span style="color:#f92672">=</span> name
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Append / for directories or @ for symbolic links</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>isdir(fullname):
+</span></span><span style="display:flex;"><span>                displayname <span style="color:#f92672">=</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/&#34;</span>
+</span></span><span style="display:flex;"><span>                linkname <span style="color:#f92672">=</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>islink(fullname):
+</span></span><span style="display:flex;"><span>                displayname <span style="color:#f92672">=</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;@&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Note: a link to a directory displays with @ and links with /</span>
+</span></span><span style="display:flex;"><span>            f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#39;&lt;li&gt;&lt;a href=&#34;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#34;&gt;</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&lt;/a&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">%</span> (urllib<span style="color:#f92672">.</span>quote(linkname), cgi<span style="color:#f92672">.</span>escape(displayname)))
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(<span style="color:#e6db74">&#34;&lt;/ul&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&lt;hr&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&lt;/body&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&lt;/html&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        length <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>tell()
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>seek(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>send_response(<span style="color:#ae81ff">200</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>send_header(<span style="color:#e6db74">&#34;Content-type&#34;</span>, <span style="color:#e6db74">&#34;text/html&#34;</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>send_header(<span style="color:#e6db74">&#34;Content-Length&#34;</span>, str(length))
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>end_headers()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">translate_path</span>(self, path):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Translate a /-separated PATH to the local filename syntax.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Components that mean special things to the local file system
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        (e.g. drive or directory names) are ignored.  (XXX They should
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        probably be diagnosed.)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># abandon query parameters</span>
+</span></span><span style="display:flex;"><span>        path <span style="color:#f92672">=</span> path<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;?&#39;</span>,<span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>        path <span style="color:#f92672">=</span> path<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;#&#39;</span>,<span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>        path <span style="color:#f92672">=</span> posixpath<span style="color:#f92672">.</span>normpath(urllib<span style="color:#f92672">.</span>unquote(path))
+</span></span><span style="display:flex;"><span>        words <span style="color:#f92672">=</span> path<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;/&#39;</span>)
+</span></span><span style="display:flex;"><span>        words <span style="color:#f92672">=</span> filter(<span style="color:#66d9ef">None</span>, words)
+</span></span><span style="display:flex;"><span>        path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getcwd()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> word <span style="color:#f92672">in</span> words:
+</span></span><span style="display:flex;"><span>            drive, word <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>splitdrive(word)
+</span></span><span style="display:flex;"><span>            head, word <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>split(word)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> word <span style="color:#f92672">in</span> (os<span style="color:#f92672">.</span>curdir, os<span style="color:#f92672">.</span>pardir): <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>            path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(path, word)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> path
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">copyfile</span>(self, source, outputfile):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Copy all data between two file objects.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        The SOURCE argument is a file object open for reading
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        (or anything with a read() method) and the DESTINATION
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        argument is a file object open for writing (or
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        anything with a write() method).
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        The only reason for overriding this would be to change
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        the block size or perhaps to replace newlines by CRLF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        -- note however that this the default server uses this
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        to copy binary data as well.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        shutil<span style="color:#f92672">.</span>copyfileobj(source, outputfile)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">guess_type</span>(self, path):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Guess the type of a file.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Argument is a PATH (a filename).
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        Return value is a string of the form type/subtype,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        usable for a MIME Content-type header.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        The default implementation looks the file&#39;s extension
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        up in the table self.extensions_map, using application/octet-stream
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        as a default; however it would be permissible (if
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        slow) to look inside the data to make a better guess.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        base, ext <span style="color:#f92672">=</span> posixpath<span style="color:#f92672">.</span>splitext(path)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ext <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>extensions_map:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>extensions_map[ext]
+</span></span><span style="display:flex;"><span>        ext <span style="color:#f92672">=</span> ext<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ext <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>extensions_map:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>extensions_map[ext]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>extensions_map[<span style="color:#e6db74">&#39;&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> mimetypes<span style="color:#f92672">.</span>inited:
+</span></span><span style="display:flex;"><span>        mimetypes<span style="color:#f92672">.</span>init() <span style="color:#75715e"># try to read system mime.types</span>
+</span></span><span style="display:flex;"><span>    extensions_map <span style="color:#f92672">=</span> mimetypes<span style="color:#f92672">.</span>types_map<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span>    extensions_map<span style="color:#f92672">.</span>update({
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;&#39;</span>: <span style="color:#e6db74">&#39;application/octet-stream&#39;</span>, <span style="color:#75715e"># Default</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;.py&#39;</span>: <span style="color:#e6db74">&#39;text/plain&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;.c&#39;</span>: <span style="color:#e6db74">&#39;text/plain&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;.h&#39;</span>: <span style="color:#e6db74">&#39;text/plain&#39;</span>,
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test</span>(HandlerClass <span style="color:#f92672">=</span> SimpleHTTPRequestHandler,
+</span></span><span style="display:flex;"><span>         ServerClass <span style="color:#f92672">=</span> BaseHTTPServer<span style="color:#f92672">.</span>HTTPServer):
+</span></span><span style="display:flex;"><span>    BaseHTTPServer<span style="color:#f92672">.</span>test(HandlerClass, ServerClass)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    test()
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/httpserver/">Httpserver</a></li>
+      <li><a href="http://localhost:1313/tags/python/">Python</a></li>
+      <li><a href="http://localhost:1313/tags/how-to/">How-To</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/cissp/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>CISSP Certification - My notes</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/hashtable_powershell/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Create hashtable using two different variables in PowerShell</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">pocketnotes</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

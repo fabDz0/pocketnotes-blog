@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>PowerShell on pocketnotes</title>
+    <link>http://localhost:1313/tags/powershell/</link>
+    <description>Recent content in PowerShell on pocketnotes</description>
+    <generator>Hugo -- 0.141.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 21 Jul 2019 22:37:57 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create hashtable using two different variables in PowerShell</title>
+      <link>http://localhost:1313/posts/hashtable_powershell/</link>
+      <pubDate>Sun, 21 Jul 2019 22:37:57 +0530</pubDate>
+      <guid>http://localhost:1313/posts/hashtable_powershell/</guid>
+      <description>&lt;p&gt;Here is how we can combinine two variables into hashtable,&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title> FolderPaths and FilesNames - PowerShell</title>
+      <link>http://localhost:1313/posts/folderpath_filename/</link>
+      <pubDate>Mon, 27 May 2019 08:25:11 +0530</pubDate>
+      <guid>http://localhost:1313/posts/folderpath_filename/</guid>
+      <description>&lt;h1 id=&#34;folderpaths-and-filesnames---powershell&#34;&gt;FolderPaths and FilesNames - PowerShell&lt;/h1&gt;
+&lt;p&gt;Loading folder path and filenames manually gives many errors. Spaces, spelling, different file paths and many others add to these. One way to avoid this is to allow the user to choose the path and filenames. Unless these are some predefined file/folderpaths which are static everywhere.&lt;/p&gt;
+&lt;p&gt;In this blog post two PowerShell functions will be defined for this purposes.&lt;/p&gt;
+&lt;h4 id=&#34;folder-path&#34;&gt;Folder Path&lt;/h4&gt;
+&lt;p&gt;This script will create a pop-up window to select folder path.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Qualys API basics</title>
+      <link>http://localhost:1313/posts/basics_qualys_api/</link>
+      <pubDate>Mon, 27 May 2019 08:08:19 +0530</pubDate>
+      <guid>http://localhost:1313/posts/basics_qualys_api/</guid>
+      <description>&lt;h1 id=&#34;basics-of-qualys-api&#34;&gt;Basics of Qualys API&lt;/h1&gt;
+&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Qualys has published a detailed guide on using &lt;a href=&#34;https://www.qualys.com/docs/qualys-api-vmpc-user-guide.pdf&#34;&gt;API&lt;/a&gt;. Primarily this blog will concentrate on &amp;ldquo;cURL&amp;rdquo; and &amp;ldquo;PowerShell&amp;rdquo; as the scripting language to query the API.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note on API limits:&lt;/strong&gt;
+Qualys has applied rate limit on API calls based on subscription.
+Reading API limit is easy, look for &lt;em&gt;X-Powered-By&lt;/em&gt; header in http-reponse headers,&lt;br&gt;
+&lt;strong&gt;X-RateLimit-Limit:&lt;/strong&gt; API calls limit&lt;br&gt;
+&lt;strong&gt;X-RateLimit-Window-Sec:/60*60&lt;/strong&gt;&amp;quot; hrs.&lt;br&gt;
+Ex:  if &amp;ldquo;X-RateLimit-Limit: 100&amp;rdquo;&lt;br&gt;
+&amp;ldquo;X-RateLimit-Window-Sec: 86400&amp;rdquo;\&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Then,&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

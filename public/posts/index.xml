@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on pocketnotes</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on pocketnotes</description>
+    <generator>Hugo -- 0.141.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 27 May 2023 21:20:42 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/posts/about/</link>
+      <pubDate>Sat, 27 May 2023 18:36:19 +0530</pubDate>
+      <guid>http://localhost:1313/posts/about/</guid>
+      <description>&lt;h1 id=&#34;about&#34;&gt;About&lt;/h1&gt;
+&lt;p&gt;Hi, My name is Fabian Darius, I&amp;rsquo;m a Cyber security Professional . I started blogging to note things which I learn and use this as my bookmark.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>StartHere</title>
+      <link>http://localhost:1313/posts/starthere/</link>
+      <pubDate>Sat, 27 May 2023 21:20:42 +0530</pubDate>
+      <guid>http://localhost:1313/posts/starthere/</guid>
+      <description>&lt;h1 id=&#34;start-here&#34;&gt;Start Here&lt;/h1&gt;
+&lt;p&gt;Blog post categories,&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ExploringOTP</title>
+      <link>http://localhost:1313/posts/exploringotp/</link>
+      <pubDate>Mon, 29 Jun 2020 09:18:25 +0530</pubDate>
+      <guid>http://localhost:1313/posts/exploringotp/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;SecretShared&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/otpWorks.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;What is second factor authentication?  The code which we enter after entering username and password, how does this work ?&lt;/p&gt;
+&lt;p&gt;In this blog post will be exploring how one time password/passcode (OTP) works. Will start with what is included in standard on OTP and then implementing this using python code.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Analyze WannaCry Ransomware with Diamond Model</title>
+      <link>http://localhost:1313/posts/diamond_wanncry/</link>
+      <pubDate>Sun, 28 Jun 2020 08:12:18 +0530</pubDate>
+      <guid>http://localhost:1313/posts/diamond_wanncry/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;WannaCry in Diamond Model&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/diamondModel.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;In this blog post, will explore how wanna cry ransomware event can be mapped with Diamond model.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Diamond Model - Intrusion Analysis</title>
+      <link>http://localhost:1313/posts/diamond/</link>
+      <pubDate>Sat, 20 Jun 2020 23:35:12 +0530</pubDate>
+      <guid>http://localhost:1313/posts/diamond/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;Diamond Model&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/diamondModel.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Diamond model for intrusion analysis is used to analyze threats. It helps to set a structure and flow to threats so that analysts can control its effects. It may not be complete but sufficient enough to control the impact.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Simple git reference</title>
+      <link>http://localhost:1313/posts/git/</link>
+      <pubDate>Sat, 20 Jun 2020 22:54:04 +0530</pubDate>
+      <guid>http://localhost:1313/posts/git/</guid>
+      <description>&lt;p&gt;Simple reference to basic git commands,&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Git Reference&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/git.jpg&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;</description>
+    </item>
+    <item>
+      <title>CISSP Certification - My notes</title>
+      <link>http://localhost:1313/posts/cissp/</link>
+      <pubDate>Tue, 14 Jan 2020 09:12:18 +0530</pubDate>
+      <guid>http://localhost:1313/posts/cissp/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;CISSP Mind map&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/cissp.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;You might have already come across this quote on CISSP preparation, &amp;ldquo;Its a mile wide and a inch deep&amp;rdquo; ,&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Simple Http Server</title>
+      <link>http://localhost:1313/posts/simplehttpserver/</link>
+      <pubDate>Sat, 07 Sep 2019 22:41:32 +0530</pubDate>
+      <guid>http://localhost:1313/posts/simplehttpserver/</guid>
+      <description>&lt;p&gt;Here is a python code to start &lt;em&gt;SimpleHTTPServer&lt;/em&gt; with an upload option.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Create hashtable using two different variables in PowerShell</title>
+      <link>http://localhost:1313/posts/hashtable_powershell/</link>
+      <pubDate>Sun, 21 Jul 2019 22:37:57 +0530</pubDate>
+      <guid>http://localhost:1313/posts/hashtable_powershell/</guid>
+      <description>&lt;p&gt;Here is how we can combinine two variables into hashtable,&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Capture WPA2 Handshake on 5Ghz </title>
+      <link>http://localhost:1313/posts/wpa2_5gz/</link>
+      <pubDate>Mon, 08 Jul 2019 22:26:15 +0530</pubDate>
+      <guid>http://localhost:1313/posts/wpa2_5gz/</guid>
+      <description>&lt;p&gt;In this blog post &lt;a href=&#34;https://shop.hak5.org/products/wifi-pineapple&#34;&gt;wifi-pineapple&lt;/a&gt; will be used to capture WPA2 handshake on 5GHz access point. Atheros based chipset is used in Wifi pineapple.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Pyautogui, a module to automate keyboard and mouse function</title>
+      <link>http://localhost:1313/posts/pyautogui/</link>
+      <pubDate>Sun, 07 Jul 2019 19:28:31 +0530</pubDate>
+      <guid>http://localhost:1313/posts/pyautogui/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://pyautogui.readthedocs.io/en/latest/install.html&#34;&gt;&lt;em&gt;pyautogui&lt;/em&gt;&lt;/a&gt; is a python module to automate keyboard and mouse actions. I found this very interesting and creepy too ! :).&lt;/p&gt;
+&lt;p&gt;Here are few things to 📝 note,&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Exploring Digital Signatures</title>
+      <link>http://localhost:1313/posts/digitalsignature/</link>
+      <pubDate>Tue, 04 Jun 2019 19:05:20 +0530</pubDate>
+      <guid>http://localhost:1313/posts/digitalsignature/</guid>
+      <description>&lt;h1 id=&#34;notes-on-digital-signatures-using-openssl&#34;&gt;Notes on Digital Signatures using openssl&lt;/h1&gt;
+&lt;p&gt;Here is a short blog post on digital signatures and how public and private key works.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title> FolderPaths and FilesNames - PowerShell</title>
+      <link>http://localhost:1313/posts/folderpath_filename/</link>
+      <pubDate>Mon, 27 May 2019 08:25:11 +0530</pubDate>
+      <guid>http://localhost:1313/posts/folderpath_filename/</guid>
+      <description>&lt;h1 id=&#34;folderpaths-and-filesnames---powershell&#34;&gt;FolderPaths and FilesNames - PowerShell&lt;/h1&gt;
+&lt;p&gt;Loading folder path and filenames manually gives many errors. Spaces, spelling, different file paths and many others add to these. One way to avoid this is to allow the user to choose the path and filenames. Unless these are some predefined file/folderpaths which are static everywhere.&lt;/p&gt;
+&lt;p&gt;In this blog post two PowerShell functions will be defined for this purposes.&lt;/p&gt;
+&lt;h4 id=&#34;folder-path&#34;&gt;Folder Path&lt;/h4&gt;
+&lt;p&gt;This script will create a pop-up window to select folder path.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Qualys API basics</title>
+      <link>http://localhost:1313/posts/basics_qualys_api/</link>
+      <pubDate>Mon, 27 May 2019 08:08:19 +0530</pubDate>
+      <guid>http://localhost:1313/posts/basics_qualys_api/</guid>
+      <description>&lt;h1 id=&#34;basics-of-qualys-api&#34;&gt;Basics of Qualys API&lt;/h1&gt;
+&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;Qualys has published a detailed guide on using &lt;a href=&#34;https://www.qualys.com/docs/qualys-api-vmpc-user-guide.pdf&#34;&gt;API&lt;/a&gt;. Primarily this blog will concentrate on &amp;ldquo;cURL&amp;rdquo; and &amp;ldquo;PowerShell&amp;rdquo; as the scripting language to query the API.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note on API limits:&lt;/strong&gt;
+Qualys has applied rate limit on API calls based on subscription.
+Reading API limit is easy, look for &lt;em&gt;X-Powered-By&lt;/em&gt; header in http-reponse headers,&lt;br&gt;
+&lt;strong&gt;X-RateLimit-Limit:&lt;/strong&gt; API calls limit&lt;br&gt;
+&lt;strong&gt;X-RateLimit-Window-Sec:/60*60&lt;/strong&gt;&amp;quot; hrs.&lt;br&gt;
+Ex:  if &amp;ldquo;X-RateLimit-Limit: 100&amp;rdquo;&lt;br&gt;
+&amp;ldquo;X-RateLimit-Window-Sec: 86400&amp;rdquo;\&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Then,&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>RDP MitM Demo</title>
+      <link>http://localhost:1313/posts/rdp_mitm_demo/</link>
+      <pubDate>Tue, 21 May 2019 07:55:37 +0530</pubDate>
+      <guid>http://localhost:1313/posts/rdp_mitm_demo/</guid>
+      <description>&lt;h3 id=&#34;pre-requisites&#34;&gt;Pre-Requisites&lt;/h3&gt;
+&lt;p&gt;We need three virtual machines to recreate this attack. I used virtual box to setup these virtual machines. All three machines must be on same subnet.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

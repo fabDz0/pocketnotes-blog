@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Python on pocketnotes</title>
+    <link>http://localhost:1313/tags/python/</link>
+    <description>Recent content in Python on pocketnotes</description>
+    <generator>Hugo -- 0.141.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 29 Jun 2020 09:18:25 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ExploringOTP</title>
+      <link>http://localhost:1313/posts/exploringotp/</link>
+      <pubDate>Mon, 29 Jun 2020 09:18:25 +0530</pubDate>
+      <guid>http://localhost:1313/posts/exploringotp/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;SecretShared&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/img/otpWorks.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;What is second factor authentication?  The code which we enter after entering username and password, how does this work ?&lt;/p&gt;
+&lt;p&gt;In this blog post will be exploring how one time password/passcode (OTP) works. Will start with what is included in standard on OTP and then implementing this using python code.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Simple Http Server</title>
+      <link>http://localhost:1313/posts/simplehttpserver/</link>
+      <pubDate>Sat, 07 Sep 2019 22:41:32 +0530</pubDate>
+      <guid>http://localhost:1313/posts/simplehttpserver/</guid>
+      <description>&lt;p&gt;Here is a python code to start &lt;em&gt;SimpleHTTPServer&lt;/em&gt; with an upload option.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Pyautogui, a module to automate keyboard and mouse function</title>
+      <link>http://localhost:1313/posts/pyautogui/</link>
+      <pubDate>Sun, 07 Jul 2019 19:28:31 +0530</pubDate>
+      <guid>http://localhost:1313/posts/pyautogui/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://pyautogui.readthedocs.io/en/latest/install.html&#34;&gt;&lt;em&gt;pyautogui&lt;/em&gt;&lt;/a&gt; is a python module to automate keyboard and mouse actions. I found this very interesting and creepy too ! :).&lt;/p&gt;
+&lt;p&gt;Here are few things to 📝 note,&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

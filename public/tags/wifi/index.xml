@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Wifi on pocketnotes</title>
+    <link>http://localhost:1313/tags/wifi/</link>
+    <description>Recent content in Wifi on pocketnotes</description>
+    <generator>Hugo -- 0.141.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Jul 2019 22:26:15 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/wifi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Capture WPA2 Handshake on 5Ghz </title>
+      <link>http://localhost:1313/posts/wpa2_5gz/</link>
+      <pubDate>Mon, 08 Jul 2019 22:26:15 +0530</pubDate>
+      <guid>http://localhost:1313/posts/wpa2_5gz/</guid>
+      <description>&lt;p&gt;In this blog post &lt;a href=&#34;https://shop.hak5.org/products/wifi-pineapple&#34;&gt;wifi-pineapple&lt;/a&gt; will be used to capture WPA2 handshake on 5GHz access point. Atheros based chipset is used in Wifi pineapple.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

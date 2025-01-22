@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Pyautogui on pocketnotes</title>
+    <link>http://localhost:1313/tags/pyautogui/</link>
+    <description>Recent content in Pyautogui on pocketnotes</description>
+    <generator>Hugo -- 0.141.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 07 Jul 2019 19:28:31 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/pyautogui/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pyautogui, a module to automate keyboard and mouse function</title>
+      <link>http://localhost:1313/posts/pyautogui/</link>
+      <pubDate>Sun, 07 Jul 2019 19:28:31 +0530</pubDate>
+      <guid>http://localhost:1313/posts/pyautogui/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://pyautogui.readthedocs.io/en/latest/install.html&#34;&gt;&lt;em&gt;pyautogui&lt;/em&gt;&lt;/a&gt; is a python module to automate keyboard and mouse actions. I found this very interesting and creepy too ! :).&lt;/p&gt;
+&lt;p&gt;Here are few things to 📝 note,&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
