@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
+<html lang="en" dir="auto" data-theme="auto">
 
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="canonical" href="http://localhost:1313/tags/notes/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.45e028aa8ce0961349adf411b013ee39406be2c0bc80d4ea3fc04555f7f4611a.css" integrity="sha256-ReAoqozglhNJrfQRsBPuOUBr4sC8gNTqP8BFVff0YRo=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.da3211e5ef867bf2b75fd5a6515cfed7195c011e8ab735694e203810a827097b.css" integrity="sha256-2jIR5e&#43;Ge/K3X9WmUVz&#43;1xlcAR6KtzVpTiA4EKgnCXs=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon/favicon-32x32.png">
@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="http://localhost:1313/favicon/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/notes/index.xml">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/notes/index.xml" title="rss">
 <link rel="alternate" hreflang="en" href="http://localhost:1313/tags/notes/">
 <noscript>
     <style>
@@ -40,43 +40,46 @@
                 --code-block-bg: rgb(46, 46, 51);
                 --code-bg: rgb(55, 56, 62);
                 --border: rgb(51, 51, 51);
+                color-scheme: dark;
             }
 
             .list {
                 background: var(--theme);
             }
 
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
+            .toc {
+                background: var(--entry);
             }
+        }
 
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
             }
         }
 
     </style>
 </noscript>
-</head>
-
-<body class="list" id="top">
 <script>
     if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
+        document.querySelector("html").dataset.theme = 'dark';
     } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
+       document.querySelector("html").dataset.theme = 'light';
     } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
     }
 
 </script>
-
-<header class="header">
+</head>
+<body class="list" id="top">
+    <header class="header">
     <nav class="nav">
         <div class="logo">
             <a href="http://localhost:1313/" accesskey="h" title="pocketnotes (Alt + H)">pocketnotes</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -130,7 +133,7 @@ What is second factor authentication? The code which we enter after entering use
 In this blog post will be exploring how one time password/passcode (OTP) works. Will start with what is included in standard on OTP and then implementing this using python code.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2020-06-29 09:18:25 +0530 IST'>June 29, 2020</span>&nbsp;·&nbsp;5 min</footer>
+  <footer class="entry-footer"><span title='2020-06-29 09:18:25 +0530 IST'>June 29, 2020</span>&nbsp;·&nbsp;<span>5 min</span></footer>
   <a class="entry-link" aria-label="post link to ExploringOTP" href="http://localhost:1313/posts/exploringotp/"></a>
 </article>
 
@@ -144,7 +147,7 @@ In this blog post will be exploring how one time password/passcode (OTP) works. 
 In this blog post, will explore how wanna cry ransomware event can be mapped with Diamond model.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2020-06-28 08:12:18 +0530 IST'>June 28, 2020</span>&nbsp;·&nbsp;2 min</footer>
+  <footer class="entry-footer"><span title='2020-06-28 08:12:18 +0530 IST'>June 28, 2020</span>&nbsp;·&nbsp;<span>2 min</span></footer>
   <a class="entry-link" aria-label="post link to Analyze WannaCry Ransomware with Diamond Model" href="http://localhost:1313/posts/diamond_wanncry/"></a>
 </article>
 
@@ -158,7 +161,7 @@ In this blog post, will explore how wanna cry ransomware event can be mapped wit
 Diamond model for intrusion analysis is used to analyze threats. It helps to set a structure and flow to threats so that analysts can control its effects. It may not be complete but sufficient enough to control the impact.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2020-06-20 23:35:12 +0530 IST'>June 20, 2020</span>&nbsp;·&nbsp;3 min</footer>
+  <footer class="entry-footer"><span title='2020-06-20 23:35:12 +0530 IST'>June 20, 2020</span>&nbsp;·&nbsp;<span>3 min</span></footer>
   <a class="entry-link" aria-label="post link to Diamond Model - Intrusion Analysis" href="http://localhost:1313/posts/diamond/"></a>
 </article>
 
@@ -171,7 +174,7 @@ Diamond model for intrusion analysis is used to analyze threats. It helps to set
     <p>Simple reference to basic git commands,
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2020-06-20 22:54:04 +0530 IST'>June 20, 2020</span>&nbsp;·&nbsp;1 min</footer>
+  <footer class="entry-footer"><span title='2020-06-20 22:54:04 +0530 IST'>June 20, 2020</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to Simple git reference" href="http://localhost:1313/posts/git/"></a>
 </article>
 
@@ -185,7 +188,7 @@ Diamond model for intrusion analysis is used to analyze threats. It helps to set
 You might have already come across this quote on CISSP preparation, “Its a mile wide and a inch deep” ,
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2020-01-14 09:12:18 +0530 IST'>January 14, 2020</span>&nbsp;·&nbsp;4 min</footer>
+  <footer class="entry-footer"><span title='2020-01-14 09:12:18 +0530 IST'>January 14, 2020</span>&nbsp;·&nbsp;<span>4 min</span></footer>
   <a class="entry-link" aria-label="post link to CISSP Certification - My notes" href="http://localhost:1313/posts/cissp/"></a>
 </article>
 
@@ -198,13 +201,13 @@ You might have already come across this quote on CISSP preparation, “Its a mil
     <p>Notes on Digital Signatures using openssl Here is a short blog post on digital signatures and how public and private key works.
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2019-06-04 19:05:20 +0530 IST'>June 4, 2019</span>&nbsp;·&nbsp;2 min</footer>
+  <footer class="entry-footer"><span title='2019-06-04 19:05:20 +0530 IST'>June 4, 2019</span>&nbsp;·&nbsp;<span>2 min</span></footer>
   <a class="entry-link" aria-label="post link to Exploring Digital Signatures" href="http://localhost:1313/posts/digitalsignature/"></a>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">pocketnotes</a></span> · 
+        <span>&copy; 2026 <a href="http://localhost:1313/">pocketnotes</a></span> · 
 
     <span>
         Powered by
@@ -219,9 +222,14 @@ You might have already come across this quote on CISSP preparation, “Its a mil
 </a>
 
 <script>
-    let menu = document.getElementById('menu')
+    let menu = document.getElementById('menu');
     if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
         menu.onscroll = function () {
             localStorage.setItem("menu-scroll-position", menu.scrollLeft);
         }
@@ -262,11 +270,12 @@ You might have already come across this quote on CISSP preparation, “Its a mil
 </script>
 <script>
     document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
             localStorage.setItem("pref-theme", 'light');
         } else {
-            document.body.classList.add('dark');
+            html.dataset.theme = 'dark';
             localStorage.setItem("pref-theme", 'dark');
         }
     })
